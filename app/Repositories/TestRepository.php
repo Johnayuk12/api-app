@@ -19,7 +19,7 @@ class TestRepository implements TestRepositoryInterface
       
     try {
         $post = Post::all();
-        return $this->success('All Post',$post);
+        return $post;
     } catch (\Exception $e) {
         return $this->error($e->getMessage(), $e->getCode());
     }
