@@ -18,7 +18,7 @@ class TestRepository implements TestRepositoryInterface
    {
       
     try {
-        $post = Post::all();
+        $post = Post::paginate(5);
         return $post;
     } catch (\Exception $e) {
         return $this->error($e->getMessage(), $e->getCode());

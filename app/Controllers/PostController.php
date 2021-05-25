@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostResource;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class PostController extends Controller
         //         $data
         // ]);
 
-        return new PostResource($data);
+        return new PostCollection($data);
     }
 
     

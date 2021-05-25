@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\PostCollection;
+use App\Post;
 
 class PostResource extends JsonResource
 {
@@ -14,11 +16,12 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
-        return[
+        return [
+            'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'created_at' => (string) $this->created_at,
-            'updated_at' => (string) $this->updated_at,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
         // return parent::toArray($request);
     }
