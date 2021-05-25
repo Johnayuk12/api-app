@@ -3,10 +3,10 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use Illuminate\Http\Request;
 
 use App\Repositories\TestRepositoryInterface;
-use App\Resources\PostResource;
 use App\Requests\PostRequest;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,9 +27,11 @@ class PostController extends Controller
         $data = $this->TestRepositoryInterface->get_all(request());
         
                
-        return response()->json([ 
-                $data
-        ]);
+        // return response()->json([ 
+        //         $data
+        // ]);
+
+        return new PostResource($data);
     }
 
     
