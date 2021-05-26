@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Http\Resources\ErrorResource;
 use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostResource;
 use Illuminate\Http\Request;
@@ -27,11 +28,6 @@ class PostController extends Controller
     {
         $data = $this->TestRepositoryInterface->get_all(request());
         
-               
-        // return response()->json([ 
-        //         $data
-        // ]);
-
         return new PostCollection($data);
     }
 
@@ -43,12 +39,7 @@ class PostController extends Controller
       
         $data = $this->TestRepositoryInterface->create($request);
 
-        return response()->json([
-            'data' =>
-            [
-                $data
-            ],
-        ]);
+        return new PostResource($data);
  
     }
 
@@ -58,29 +49,23 @@ class PostController extends Controller
     {
         $data = $this->TestRepositoryInterface->get_single($id);
 
-        return response()->json([
-            'data' =>
-            [
-                $data
-            ],
-        ]);
+        if (!$data)
+        {
+            return response()->json(['error' => 'No post with the ID'], 404);
+        }
+        return new PostResource($data);
+
     }
 
     
-   
     
     public function updatePost(PostRequest $request, $id)
     {  
         $validated = $request->validated();
 
         $data = $this->TestRepositoryInterface->update($id);
-        
-        return response()->json([
-            'data' =>
-            [
-                $data
-            ],
-        ]);
+    
+        return new PostResource($data);
     }
 
   
@@ -88,11 +73,11 @@ class PostController extends Controller
     {
         $data = $this->TestRepositoryInterface->delete($id);
 
-        return response()->json([
-            'data' =>
-            [
-                $data
-            ],
-        ]);
+        if (!$data)
+        {
+            return response()->json(['error' => 'No post with the ID'], 404);
+        }
+
+        return response()->json('null',204);
     }
 }

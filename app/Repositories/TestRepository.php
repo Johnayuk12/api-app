@@ -21,7 +21,9 @@ class TestRepository implements TestRepositoryInterface
         $post = Post::paginate(5);
         return $post;
     } catch (\Exception $e) {
-        return $this->error($e->getMessage(), $e->getCode());
+        // return $this->error($e->getMessage(), $e->getCode());
+        return $e->getMessage();
+
     }
 
        
@@ -35,14 +37,17 @@ class TestRepository implements TestRepositoryInterface
        try {
         $post = Post::where('id', $id)->first();
 
-        if (!$post) {
-            return $this->error('No post with this ID $id', 404);
-        }
+        // if (!$post) {
+        //     return $this->error('No post with this ID $id', 404);
+        // }
 
-        return $this->success('Post Detail',$post,);
+        // return $this->success('Post Detail',$post,);
+        return $post;
+
 
        } catch (\Exception $e) {
-        return $this->error($e->getMessage(), $e->getCode());
+        return $e->getMessage();
+        // return $this->error($e->getMessage(), $e->getCode());
        }
    }
 
@@ -58,10 +63,14 @@ class TestRepository implements TestRepositoryInterface
 
         $post->save();
         
-        return $this->success('All Post',$post,);
+        // return $this->success('All Post',$post,);
+        return $post;
+
 
        } catch (\Exception $e) {
-              return $this->error($e->getMessage(), $e->getCode());
+            //   return $this->error($e->getMessage(), $e->getCode());
+        return $e->getMessage();
+
        }
        
    }
@@ -80,10 +89,14 @@ class TestRepository implements TestRepositoryInterface
 
           $post->save();
 
-          return $this->success('post updated', $post);
+        //   return $this->success('post updated', $post);
+        return $post;
+
 
        } catch (\Exception $e) {
-        return $this->error($e->getMessage(), $e->getCode());
+        // return $this->error($e->getMessage(), $e->getCode());
+        return $e->getMessage();
+
        }
    }
 
@@ -92,10 +105,14 @@ class TestRepository implements TestRepositoryInterface
       try {
         $post = Post::where('id',$id)->delete();
 
-        if(!$post) return $this->error("No Post with ID $id", 404);
+        // if(!$post) return $this->error("No Post with ID $id", 404);
+        return $post;
+
 
       } catch (\Exception $e) {
-        return $this->error($e->getMessage(), $e->getCode());
+        // return $this->error($e->getMessage(), $e->getCode());
+        return $e->getMessage();
+
       }
     
    }  
