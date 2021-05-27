@@ -29,6 +29,8 @@ class PostController extends Controller
         $data = $this->TestRepositoryInterface->get_all(request());
         
         return new PostCollection($data);
+
+        // return response()->json(new PostCollection($data));
     }
 
     
@@ -40,6 +42,7 @@ class PostController extends Controller
         $data = $this->TestRepositoryInterface->create($request);
 
         return new PostResource($data);
+        // return response()->json(new PostResource($data));
  
     }
 
@@ -54,6 +57,8 @@ class PostController extends Controller
             return response()->json(['error' => 'No post with the ID'], 404);
         }
         return new PostResource($data);
+        // return response()->json(new PostResource($data));
+
 
     }
 
@@ -66,6 +71,8 @@ class PostController extends Controller
         $data = $this->TestRepositoryInterface->update($id);
     
         return new PostResource($data);
+        // return response()->json(new PostResource($data));
+
     }
 
   
