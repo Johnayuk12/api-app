@@ -18,7 +18,8 @@ class TestRepository implements TestRepositoryInterface
    {
       
     try {
-        $post = Post::paginate(5);
+        $post = Post::orderBy('created_at','ASC')->paginate(6);
+       
         return $post;
     } catch (\Exception $e) {
         // return $this->error($e->getMessage(), $e->getCode());
