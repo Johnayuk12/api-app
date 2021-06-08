@@ -30,7 +30,7 @@ class PostController extends Controller
         
         return new PostCollection($data);
 
-        // return response()->json(new PostCollection($data));
+        //return response()->json(new PostCollection($data));
     }
 
     

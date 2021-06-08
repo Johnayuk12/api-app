@@ -25,6 +25,6 @@ Route::post('createPost','PostController@createPost');
 
 Route::get('getSingle/{id}','PostController@get_single');
 
-Route::put('updatePost/{id}','PostController@updatePost');
+Route::patch('updatePost/{id}','PostController@updatePost');
 
 Route::delete('deletePost/{id}','PostController@deletePost');
